@@ -4,31 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace calculator_task
 {
     public class ClassCalculator
     {
-        private string[] keys =
+        public static event EventHandler ClickEvent;
+        public static Button btn;
+        protected static string[] keys =
         {
             "7","8","9","/",
             "4","5","6","*",
             "1","2","3","-",
             "0",",","=","+"
         };
-        public static void KeyCreated(FlowLayoutPanel panel)
+        public static void KeyCreated(GroupBox box)
         {
-            for (int i = 0; i < 16; i++)
+            byte keyValue = 0;
+            for (int i = 0; i < 4; i++)
             {
-                Button btn = new Button();
-                btn.Name = i.ToString();
-                btn.Text = i.ToString();
-                btn.Width = 50;
-                btn.Height = 50;
-                panel.Controls.Add(btn);
+                for (int j = 0; j <4; j++)
+                {
+                    btn = new Button();
+                    btn.Name = i.ToString();
+                    btn.Text = keys[keyValue].ToString();
+                    btn.Width = 45;
+                    btn.Height = 45;
+                    btn.Location = new Point( 8+ j*48, 11 + i*49);
+                    btn.Click += ClickEvent;
+                    box.Controls.Add(btn);
+                    keyValue++;
+                }
             }
         }
-
-
     }
 }
