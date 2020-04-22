@@ -10,27 +10,19 @@ namespace calculator_task
 {
     public static class ClassCalculator
     {
-        
-        public static double Add(string get_result,string number)
+
+        public static double Operator(string oprt, double n1, double n2)
         {
-            double result = 0;
-            return result = Convert.ToDouble( get_result) + Convert.ToDouble(number);
-        }
-        public static double Sub(string get_result, string number)
-        {
-            double result = 0;
-            return result = get_result != "0" ? Convert.ToDouble(get_result) - Convert.ToDouble(number) : Convert.ToDouble(number);
-        }
-        public static double Operator(this string logic, int x, int y)
-        {
-            switch (logic)
+
+            switch (oprt)
             {
-                case "+": return x + y;
-                case "-": return x - y;
-                case "*": return x * y;
-                case "/": return x / y;
-                default: throw new Exception("Error");
+                case "-": return n1 - n2;
+                case "*": return n1 * n2;
+                case "+": return n1 + n2;
+                case "/": return n1 / n2;
+                default: return 0;
             }
+
         }
     }
 }

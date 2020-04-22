@@ -32,7 +32,8 @@ namespace calculator_task
         }
         private void Operator_Click(object sender, EventArgs e)
         {
-            operatorIsValue = "";
+            //TODO: Sonuç labelindaki operator ifadesi kontrol edilecek.
+            //operatorIsValue = "";
             Button btn = (Button)sender;
             if(txtNumbers.Text.ToString() != "")
             {
@@ -67,10 +68,9 @@ namespace calculator_task
                         txtNumbers.Clear();
                         break;
                     case "=":
-                        //TODO: "=" ibaresi kontrol edilecek..
-                        //result = 
+                        result = ClassCalculator.Operator(operatorIsValue, result, Convert.ToDouble(txtNumbers.Text));
                         lblResult.Text = "";
-                        lblResult.Text = result.ToString() + " " + btn.Text;
+                        lblResult.Text = result.ToString();
                         txtNumbers.Clear();
                         break;
                 }
