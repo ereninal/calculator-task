@@ -62,7 +62,7 @@ namespace calculator_task
                         txtNumbers.Clear();
                         operatorIsValue = "/";
                         break;
-                    case "*":
+                    case "X":
                         if (operatorIsValue != "=")
                             result = result != 0 ? result * Convert.ToDouble(txtNumbers.Text) : Convert.ToDouble(txtNumbers.Text);
                         lblResult.Text = "";
