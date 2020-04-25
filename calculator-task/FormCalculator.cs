@@ -35,43 +35,47 @@ namespace calculator_task
             //TODO: Sonuç labelindaki operator ifadesi kontrol edilecek.
             //operatorIsValue = "";
             Button btn = (Button)sender;
-            if(txtNumbers.Text.ToString() != "")
+            if(txtNumbers.Text.ToString() != "" || result > 0)
             {
                 switch (btn.Text.ToString())
                 {
                     case "+":
-                        operatorIsValue = "+";
-                        result += Convert.ToDouble(txtNumbers.Text); 
+                        result = operatorIsValue == "=" ? result : result + Convert.ToDouble(txtNumbers.Text); 
                         lblResult.Text = "";
                         lblResult.Text = result.ToString() + " " + btn.Text;
                         txtNumbers.Clear();
+                        operatorIsValue = "+";
                         break;
                     case "-":
-                        operatorIsValue = "-";
-                        result = result != 0 ? result  - Convert.ToDouble(txtNumbers.Text) : Convert.ToDouble(txtNumbers.Text);
+                        if (operatorIsValue != "=")
+                            result = result != 0 ? result - Convert.ToDouble(txtNumbers.Text) : Convert.ToDouble(txtNumbers.Text);
                         lblResult.Text = "";
                         lblResult.Text = result.ToString() + " " + btn.Text;
+                        operatorIsValue = "-";
                         txtNumbers.Clear();
                         break;
                     case "/":
-                        operatorIsValue = "/";
-                        result = result != 0 ? result / Convert.ToDouble(txtNumbers.Text) : Convert.ToDouble(txtNumbers.Text);
+                        if (operatorIsValue != "=")
+                            result = result != 0 ? result / Convert.ToDouble(txtNumbers.Text) : Convert.ToDouble(txtNumbers.Text);
                         lblResult.Text = "";
                         lblResult.Text = result.ToString() + " " + btn.Text;
                         txtNumbers.Clear();
+                        operatorIsValue = "/";
                         break;
                     case "*":
-                        operatorIsValue = "*";
-                        result = result != 0 ? result * Convert.ToDouble(txtNumbers.Text) : Convert.ToDouble(txtNumbers.Text);
+                        if (operatorIsValue != "=")
+                            result = result != 0 ? result * Convert.ToDouble(txtNumbers.Text) : Convert.ToDouble(txtNumbers.Text);
                         lblResult.Text = "";
                         lblResult.Text = result.ToString() + " " + btn.Text;
                         txtNumbers.Clear();
+                        operatorIsValue = "*";
                         break;
                     case "=":
                         result = ClassCalculator.Operator(operatorIsValue, result, Convert.ToDouble(txtNumbers.Text));
                         lblResult.Text = "";
                         lblResult.Text = result.ToString();
                         txtNumbers.Clear();
+                        operatorIsValue = "=";
                         break;
                 }
             }
@@ -87,6 +91,15 @@ namespace calculator_task
         private void TxtNumbers_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            result = 0;
+            txtNumbers.Clear();
+            txtNumbers.Focus();
+            txtNumbers.Text = "0";
+            lblResult.Text = "";
         }
     }
 }

@@ -119,6 +119,7 @@
             this.button18.TabIndex = 0;
             this.button18.Text = "AC";
             this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // button8
             // 
@@ -196,7 +197,7 @@
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(36, 33);
             this.button14.TabIndex = 0;
-            this.button14.Text = ".";
+            this.button14.Text = ",";
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.Numbers_Click);
             // 
