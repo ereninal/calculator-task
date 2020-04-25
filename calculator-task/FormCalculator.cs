@@ -32,8 +32,6 @@ namespace calculator_task
         }
         private void Operator_Click(object sender, EventArgs e)
         {
-            //TODO: Sonuç labelindaki operator ifadesi kontrol edilecek.
-            //operatorIsValue = "";
             Button btn = (Button)sender;
             if(txtNumbers.Text.ToString() != "" || result > 0)
             {
